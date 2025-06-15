@@ -12,11 +12,14 @@ logger.setLevel(logging.INFO)
 
 sql_url = ""
 if os.getenv("WEBSITE_HOSTNAME"):
+    print(f"in website")
     logger.info("Connecting to Azure PostgreSQL Flexible server based on AZURE_POSTGRESQL_CONNECTIONSTRING...")
     env_connection_string = os.getenv("AZURE_POSTGRESQL_CONNECTIONSTRING")
     if env_connection_string is None:
+        print(f"No connection")
         logger.info("Missing environment variable AZURE_POSTGRESQL_CONNECTIONSTRING")
     else:
+        print(f"Connection: {env_connection_string}")
         # Parse the connection string
         details = dict(item.split('=') for item in env_connection_string.split())
 
@@ -28,6 +31,7 @@ if os.getenv("WEBSITE_HOSTNAME"):
 
 else:
     logger.info("Connecting to local PostgreSQL server based on .env file...")
+    print("Connecting to local PostgreSQL server based on .env file...")
     load_dotenv()
     POSTGRES_USERNAME = os.environ.get("DBUSER")
     POSTGRES_PASSWORD = os.environ.get("DBPASS")
