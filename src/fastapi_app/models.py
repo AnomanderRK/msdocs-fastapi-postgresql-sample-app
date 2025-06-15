@@ -20,7 +20,7 @@ if os.getenv("WEBSITE_HOSTNAME"):
     else:
         # Parse the connection string
         details = dict(item.split('=') for item in env_connection_string.split(";"))
-
+        print(f"{details=}")
         # Properly format the URL for SQLAlchemy
         sql_url = (
             f"postgresql://{quote_plus(details['User Id'])}:{quote_plus(details['Password'])}"
