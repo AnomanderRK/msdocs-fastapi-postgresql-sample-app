@@ -18,14 +18,13 @@ if os.getenv("WEBSITE_HOSTNAME"):
     if env_connection_string is None:
         logger.info("Missing environment variable AZURE_POSTGRESQL_CONNECTIONSTRING")
     else:
-        print(f"Connection: {env_connection_string}")
         # Parse the connection string
-        details = dict(item.split('=') for item in env_connection_string.split())
+        details = dict(item.split('=') for item in env_connection_string.split(";"))
 
         # Properly format the URL for SQLAlchemy
         sql_url = (
-            f"postgresql://{quote_plus(details['user'])}:{quote_plus(details['password'])}"
-            f"@{details['host']}:{details['port']}/{details['dbname']}?sslmode={details['sslmode']}"
+            f"postgresql://{quote_plus(details['User Id'])}:{quote_plus(details['Password'])}"
+            f"@{details['Server']}:{details['Port']}/{details['Database']}"
         )
 
 else:
