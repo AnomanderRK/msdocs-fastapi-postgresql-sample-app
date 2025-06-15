@@ -12,11 +12,10 @@ logger.setLevel(logging.INFO)
 
 sql_url = ""
 if os.getenv("WEBSITE_HOSTNAME"):
-    print(f"in website")
+    print("in website")
     logger.info("Connecting to Azure PostgreSQL Flexible server based on AZURE_POSTGRESQL_CONNECTIONSTRING...")
     env_connection_string = os.getenv("AZURE_POSTGRESQL_CONNECTIONSTRING")
     if env_connection_string is None:
-        print(f"No connection")
         logger.info("Missing environment variable AZURE_POSTGRESQL_CONNECTIONSTRING")
     else:
         print(f"Connection: {env_connection_string}")
