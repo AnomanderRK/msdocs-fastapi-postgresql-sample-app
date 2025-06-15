@@ -36,6 +36,8 @@ else:
     POSTGRES_PORT = os.environ.get("DBPORT", 5432)
 
     sql_url = f"postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DATABASE}"
+print(f"{sql_url=}")
+logger.warning(f"{sql_url=}")
 
 engine = create_engine(sql_url)
 
